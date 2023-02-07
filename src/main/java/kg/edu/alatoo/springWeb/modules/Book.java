@@ -17,6 +17,9 @@ public class Book {
     @ManyToMany
     private Set<Author> authors;
 
+//    @ManyToOne
+//    private Publisher publisher;
+
     public Book() {
     }
 

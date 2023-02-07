@@ -2,11 +2,12 @@ package kg.edu.alatoo.springWeb;
 
 import kg.edu.alatoo.springWeb.modules.Author;
 import kg.edu.alatoo.springWeb.modules.Book;
-import kg.edu.alatoo.springWeb.repos.AuthorRepo;
-import kg.edu.alatoo.springWeb.repos.BookRepo;
+import kg.edu.alatoo.springWeb.repos.AuthorRepository;
+import kg.edu.alatoo.springWeb.repos.BookRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,9 @@ import java.util.List;
 public class InitData implements InitializingBean {
 
     @Autowired
-    private BookRepo bookRepo;
+    private BookRepository bookRepository;
     @Autowired
-    private AuthorRepo authorRepo;
+    private AuthorRepository authorRepository;
     @Override
     public void afterPropertiesSet() {
         List<Author> authors = new ArrayList<>();
@@ -25,14 +26,14 @@ public class InitData implements InitializingBean {
         authors.add(artur);
         Author djek = new Author("Djek", "London");
         authors.add(djek);
-        authorRepo.saveAll(authors);
+        authorRepository.saveAll(authors);
 
         List<Book> books = new ArrayList<>();
         books.add(new Book("Sherlock Holms", "3541354").addAuthor(djek));
         books.add(new Book("Database", "43435435").addAuthor(djek).addAuthor(artur));
         books.add(new Book("Alchemist", "54343433").addAuthor(artur));
         System.out.println("Before save: " + books);
-        bookRepo.saveAll(books);
+        bookRepository.saveAll(books);
         System.out.println("After save: "+ books);
 
     }
