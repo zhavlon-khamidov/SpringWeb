@@ -1,11 +1,10 @@
 package kg.edu.alatoo.springWeb.modules;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Book {
@@ -15,7 +14,8 @@ public class Book {
     private String title;
     private String isbn;
 
-
+    @ManyToMany
+    private Set<Author> authors;
 
     public Book() {
     }
@@ -29,8 +29,9 @@ public class Book {
         return id;
     }
 
-    public void setId(long id) {
+    public Book setId(long id) {
         this.id = id;
+        return this;
     }
 
     public String getTitle() {
@@ -69,5 +70,13 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';
+    }
+
+    public Book addAuthor(Author author) {
+        if (authors == null)
+            authors = new HashSet<>();
+
+        authors.add(author);
+        return this;
     }
 }
