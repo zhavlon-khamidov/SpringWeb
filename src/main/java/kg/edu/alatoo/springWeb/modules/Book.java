@@ -14,11 +14,13 @@ public class Book {
     private String title;
     private String isbn;
 
+    private int published_year;
+
     @ManyToMany
     private Set<Author> authors;
 
-//    @ManyToOne
-//    private Publisher publisher;
+    @ManyToOne
+    private Publisher publisher;
 
     public Book() {
     }
