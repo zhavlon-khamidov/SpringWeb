@@ -6,6 +6,7 @@ import kg.edu.alatoo.springWeb.repos.AuthorRepository;
 import kg.edu.alatoo.springWeb.repos.BookRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Profile("dev")
 public class InitData implements InitializingBean {
 
     @Autowired
