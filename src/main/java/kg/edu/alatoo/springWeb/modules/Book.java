@@ -1,6 +1,8 @@
 package kg.edu.alatoo.springWeb.modules;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.ISBN;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -11,10 +13,16 @@ public class Book {
 
     @Id @GeneratedValue
     private long id;
+    @NotBlank
     private String title;
+
+    @ISBN
     private String isbn;
 
-    private int published_year;
+    private int publishedYear;
+
+    private String lang;
+    private int pageNumbers;
 
     @ManyToMany
     private Set<Author> authors;

@@ -14,7 +14,7 @@ public class MainController {
     @Autowired
     private BookRepository bookRepository;
 
-    @GetMapping({"/","/index"})
+    @GetMapping({"/",})
     public String main(Model model) {
 
         System.out.println(bookRepository.findAll());
