@@ -14,7 +14,7 @@ public class Book {
     private String title;
     private String isbn;
 
-    private int published_year;
+    private int publishedYear;
 
     @ManyToMany
     private Set<Author> authors;
@@ -55,6 +55,14 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,5 +91,21 @@ public class Book {
 
         authors.add(author);
         return this;
+    }
+
+    public int getPublishedYear() {
+        return publishedYear;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setPublishedYear(int published_year) {
+        this.publishedYear = published_year;
     }
 }
