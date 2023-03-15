@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action = "/assignbook" method="post">
+  <input type="hidden" name="bookId" value="${book.id}">
+  <select name="borrowerId">
+    <option
+            th:each="borrower : ${borrowers}"
+            value="${borrower.id}"
+            th:text="${borrower.name}">Borrower name</option>
+  </select>
+</form>
+</body>
+</html>
