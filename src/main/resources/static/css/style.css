@@ -1,3 +1,26 @@
-p{
-    color: red;
+*{
+    color: #444;
+}
+
+ul#authors {
+    margin: 0;
+    list-style-type: none;
+}
+
+ul#authors li{
+    padding: 0.5em 0.2em;
+    border: 1px aqua solid;
+    display: inline-block;
+    margin: 0 0.5em 1em;
+}
+
+.form {
+    max-width: 30em;
+    margin: auto;
+}
+
+.form > div {
+    border: 1px dotted grey;
+    padding: 0.3em;
+    margin: 0.5em;
 }

@@ -5,9 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Book form</title>
+
+  <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
-<form method="post" th:action="@{/save}" th:object="${book}">
+<form class="form" method="post" th:action="@{/save}" th:object="${book}">
   <input type="hidden" th:field="*{id}">
   <div>
     <label for="title" >Title:</label>
@@ -31,6 +33,16 @@
               th:text="${publisher.name}">Publisher</option>
     </select>
   </div>
+
+  <ul id="authors">
+    Authors
+    <li th:each="author : ${authors}" >
+      <label th:for="${#ids.next('authors')}">
+        <input type="checkbox" th:field="*{authors}" th:value="${author.id}">
+        <span th:text="${author.name + ' ' + author.surname}">Author Name</span>
+      </label>
+    </li>
+  </ul>
     <button>Save</button>
 
     <a href="/" th:href="@{/}">Cancel</a>

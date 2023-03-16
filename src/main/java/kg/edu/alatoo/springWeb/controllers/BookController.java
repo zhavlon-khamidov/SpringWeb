@@ -1,6 +1,7 @@
 package kg.edu.alatoo.springWeb.controllers;
 
 import kg.edu.alatoo.springWeb.modules.Book;
+import kg.edu.alatoo.springWeb.repos.AuthorRepository;
 import kg.edu.alatoo.springWeb.repos.BookRepository;
 import kg.edu.alatoo.springWeb.repos.PublisherRepository;
 import org.springframework.stereotype.Controller;
@@ -15,16 +16,19 @@ public class BookController {
 
     private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
+    private final AuthorRepository authorRepository;
 
-    public BookController(BookRepository bookRepository, PublisherRepository publisherRepository) {
+    public BookController(BookRepository bookRepository, PublisherRepository publisherRepository, AuthorRepository authorRepository) {
         this.bookRepository = bookRepository;
         this.publisherRepository = publisherRepository;
+        this.authorRepository = authorRepository;
     }
 
     @GetMapping("/create")
     public String createBook(Model model) {
         model.addAttribute("book", new Book());
         model.addAttribute("publishers", publisherRepository.findAll());
+        model.addAttribute("authors", authorRepository.findAll());
         return "book-form";
     }
 
@@ -32,7 +36,8 @@ public class BookController {
     public ModelAndView updateBook(@PathVariable Long id) {
         return new ModelAndView("book-form",
                 Map.of("book", bookRepository.findById(id).orElseThrow(),
-                        "publishers",publisherRepository.findAll()));
+                        "publishers",publisherRepository.findAll(),
+                        "authors", authorRepository.findAll()));
     }
 
     @PostMapping("/save")
@@ -45,6 +50,5 @@ public class BookController {
     @ResponseBody
     public void deleteBook(@PathVariable Long bookId) {
         bookRepository.deleteById(bookId);
-//        return "redirect:/";
     }
 }
