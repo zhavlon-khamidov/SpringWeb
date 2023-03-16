@@ -17,8 +17,6 @@ public class MainController {
     @GetMapping({"/","/index"})
     public String main(Model model) {
 
-        System.out.println(bookRepository.findAll());
-
         model.addAttribute("word", "Hello World!");
         model.addAttribute("books", bookRepository.findAll());
 

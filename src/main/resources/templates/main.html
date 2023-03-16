@@ -8,15 +8,38 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1 th:text="#{hello}">Main Page</h1>
-<p th:text="${word}">Any text that got from Model</p>
 
-<input type="text" name="name" id="name" value="testvalue" th:value="${word}">
+<header>
+    <h2>Logo</h2>
+    <nav>
+        <a href="/create" th:href="@{/create}">Create new Book</a>
+    </nav>
+</header>
 
-<ul>
-    <li th:each="book : ${books}" th:text="${book.getTitle() + ' - ' + book.getIsbn()}">Book titles</li>
-</ul>
+<main>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur dolore enim facilis, illo impedit iusto laudantium libero, modi non numquam pariatur quia reprehenderit rerum similique sint tempora temporibus vitae.</p>
+    <h1 th:text="#{books}">Books</h1>
+    <ul>
+        <li th:each="book : ${books}">
+            <span th:text="${book.getTitle() + ' - ' + book.getIsbn()}">Book titles </span>
+            <a th:href="@{/update/{bookId}(bookId=${book.getId()})}">Edit</a>
+            <button th:onclick="'deleteBook('+ ${book.getId()} +')'">Delete</button>
+        </li>
+    </ul>
+</main>
+
+<script>
+    function deleteBook(id) {
+        if (confirm("Are you sure to delete the book?")){
+            fetch('/delete/'+id,{
+                method: 'DELETE'
+            }).then(reloadLocation)
+        }
+    }
+
+    function reloadLocation() {
+        window.location.reload();
+    }
+</script>
 </body>
 </html>
