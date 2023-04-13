@@ -24,13 +24,14 @@
             <span th:text="${book.getTitle() + ' - ' + book.getIsbn()}">Book titles </span>
             <a th:href="@{/update/{bookId}(bookId=${book.getId()})}">Edit</a>
             <button th:onclick="'deleteBook('+ ${book.getId()} +')'">Delete</button>
+            <a th:href="@{/delete/{bookId}(bookId=${book.getId()})}">Force delete</a>
         </li>
     </ul>
 </main>
 
 <script>
     function deleteBook(id) {
-        if (confirm("Are you sure to delete the book?")){
+        if (confirm("Are you sure to delete this book?")){
             fetch('/delete/'+id,{
                 method: 'DELETE'
             }).then(reloadLocation)

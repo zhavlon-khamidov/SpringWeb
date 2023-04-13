@@ -51,4 +51,10 @@ public class BookController {
     public void deleteBook(@PathVariable Long bookId) {
         bookRepository.deleteById(bookId);
     }
+
+    @GetMapping("/delete/{bookId}")
+    public String deleteBookWithoutConfirm(@PathVariable Long bookId) {
+        bookRepository.deleteById(bookId);
+        return "redirect:/";
+    }
 }
