@@ -1,7 +1,7 @@
-package kg.edu.alatoo.springWeb.controllers;
+package kg.edu.alatoo.spring_web.controllers;
 
-import kg.edu.alatoo.springWeb.modules.Book;
-import kg.edu.alatoo.springWeb.repos.BookRepository;
+import kg.edu.alatoo.spring_web.modules.Book;
+import kg.edu.alatoo.spring_web.repos.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

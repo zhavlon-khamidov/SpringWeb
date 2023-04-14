@@ -1,11 +1,14 @@
-package kg.edu.alatoo.springWeb;
+package kg.edu.alatoo.spring_web;
 
-import kg.edu.alatoo.springWeb.modules.Author;
-import kg.edu.alatoo.springWeb.modules.Book;
-import kg.edu.alatoo.springWeb.modules.Publisher;
-import kg.edu.alatoo.springWeb.repos.AuthorRepository;
-import kg.edu.alatoo.springWeb.repos.BookRepository;
-import kg.edu.alatoo.springWeb.repos.PublisherRepository;
+import kg.edu.alatoo.spring_web.modules.Author;
+import kg.edu.alatoo.spring_web.modules.Book;
+import kg.edu.alatoo.spring_web.modules.Publisher;
+import kg.edu.alatoo.spring_web.repos.AuthorRepository;
+import kg.edu.alatoo.spring_web.repos.BookRepository;
+import kg.edu.alatoo.spring_web.repos.PublisherRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -16,6 +19,8 @@ import java.util.List;
 @Component
 @Profile("dev")
 public class InitData implements InitializingBean {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
@@ -40,9 +45,9 @@ public class InitData implements InitializingBean {
         books.add(new Book("Sherlock Holms", "3541354").addAuthor(djek));
         books.add(new Book("Database", "43435435").addAuthor(djek).addAuthor(artur));
         books.add(new Book("Alchemist", "54343433").addAuthor(artur));
-        System.out.println("Before save: " + books);
+        log.info("Before save: {}", books);
         bookRepository.saveAll(books);
-        System.out.println("After save: "+ books);
+        log.info("After save: {}", books);
 
 
         List<Publisher> publishers = new ArrayList<>();

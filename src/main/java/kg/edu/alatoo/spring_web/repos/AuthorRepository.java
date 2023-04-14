@@ -1,6 +1,6 @@
-package kg.edu.alatoo.springWeb.repos;
+package kg.edu.alatoo.spring_web.repos;
 
-import kg.edu.alatoo.springWeb.modules.Author;
+import kg.edu.alatoo.spring_web.modules.Author;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Set;

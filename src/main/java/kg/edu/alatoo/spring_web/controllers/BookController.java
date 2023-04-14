@@ -1,9 +1,9 @@
-package kg.edu.alatoo.springWeb.controllers;
+package kg.edu.alatoo.spring_web.controllers;
 
-import kg.edu.alatoo.springWeb.modules.Book;
-import kg.edu.alatoo.springWeb.repos.AuthorRepository;
-import kg.edu.alatoo.springWeb.repos.BookRepository;
-import kg.edu.alatoo.springWeb.repos.PublisherRepository;
+import kg.edu.alatoo.spring_web.modules.Book;
+import kg.edu.alatoo.spring_web.repos.AuthorRepository;
+import kg.edu.alatoo.spring_web.repos.BookRepository;
+import kg.edu.alatoo.spring_web.repos.PublisherRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

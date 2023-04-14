@@ -1,4 +1,4 @@
-package kg.edu.alatoo.springWeb.modules;
+package kg.edu.alatoo.spring_web.modules;
 
 import jakarta.persistence.*;
 

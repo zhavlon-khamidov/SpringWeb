@@ -1,4 +1,4 @@
-package kg.edu.alatoo.springWeb;
+package kg.edu.alatoo.spring_web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

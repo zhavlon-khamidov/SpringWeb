@@ -1,4 +1,6 @@
-package kg.edu.alatoo.springWeb;
+package kg.edu.alatoo.spring_web;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ class SpringWebApplicationTests {
 
 	@Test
 	void contextLoads() {
+		assertNotNull(test);
 		System.out.println(test.hello());
 	}
 
