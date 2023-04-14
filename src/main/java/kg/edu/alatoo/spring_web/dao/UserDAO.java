@@ -3,8 +3,6 @@ package kg.edu.alatoo.spring_web.dao;
 import kg.edu.alatoo.spring_web.modules.Role;
 import kg.edu.alatoo.spring_web.modules.User;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
