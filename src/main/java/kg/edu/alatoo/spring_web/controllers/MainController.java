@@ -11,16 +11,25 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class MainController {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+
+    public MainController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @GetMapping({"/","/index"})
-    public String main(Model model) {
+    public String index(Model model) {
 
         model.addAttribute("word", "Hello World!");
         model.addAttribute("books", bookRepository.findAll());
 
         return "main";
+    }
+
+    @GetMapping("/admin")
+    @ResponseBody
+    public String admin() {
+        return "<h1>Welcome admin</h1>";
     }
 
     @GetMapping("/isbn/{isbn}")

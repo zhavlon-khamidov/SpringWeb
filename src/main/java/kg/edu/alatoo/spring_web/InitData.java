@@ -1,12 +1,11 @@
 package kg.edu.alatoo.spring_web;
 
-import kg.edu.alatoo.spring_web.modules.Author;
-import kg.edu.alatoo.spring_web.modules.Book;
-import kg.edu.alatoo.spring_web.modules.Publisher;
+import kg.edu.alatoo.spring_web.modules.*;
 import kg.edu.alatoo.spring_web.repos.AuthorRepository;
 import kg.edu.alatoo.spring_web.repos.BookRepository;
 import kg.edu.alatoo.spring_web.repos.PublisherRepository;
 
+import kg.edu.alatoo.spring_web.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -26,14 +25,39 @@ public class InitData implements InitializingBean {
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
 
-    public InitData(BookRepository bookRepository, AuthorRepository authorRepository, PublisherRepository publisherRepository) {
+    private final UserService userService;
+
+    public InitData(BookRepository bookRepository, AuthorRepository authorRepository, PublisherRepository publisherRepository, UserService userService) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.publisherRepository = publisherRepository;
+        this.userService = userService;
     }
 
     @Override
     public void afterPropertiesSet() {
+        populateBooks();
+        populateUsers();
+    }
+
+    private void populateUsers() {
+        User user = User.builder()
+                .username("user")
+                .password("user")
+                .firstName("User")
+                .build();
+
+        User admin = User.builder()
+                .username("admin")
+                .password("admin")
+                .firstName("Admin")
+                .build();
+
+        userService.createUserWithRoles(user, "USER");
+        userService.createUserWithRoles(admin, "USER", "ADMIN");
+    }
+
+    private void populateBooks() {
         List<Author> authors = new ArrayList<>();
         Author artur = new Author("Artur", "Konandoel");
         authors.add(artur);
@@ -55,10 +79,6 @@ public class InitData implements InitializingBean {
 
 
         publisherRepository.saveAll(publishers);
-
-
-
-
 
     }
 }
