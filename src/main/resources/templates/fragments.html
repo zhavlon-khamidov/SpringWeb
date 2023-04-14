@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head (title)">
+    <meta charset="UTF-8">
+    <title th:text="${title}">My App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:fragment="header">
+    <a href="/" th:href="@{/}">
+        <img class="logo" src="../static/img/logo.png" th:src="@{/img/logo.png}" alt="Logo">
+    </a>
+    <nav>
+        <a href="/create" th:href="@{/create}">Create new Book</a>
+        <a href="/logout" sec:authorize-expr="authenticated">Log out</a>
+        <a href="/login" sec:authorize-expr="anonymous">Log in</a>
+        <a href="/admin" sec:authorize-expr="hasRole('ADMIN')">Admin page</a>
+    </nav>
+</header>
+
+<footer th:fragment="footer">
+  FOOTER
+</footer>
+</body>
+</html>

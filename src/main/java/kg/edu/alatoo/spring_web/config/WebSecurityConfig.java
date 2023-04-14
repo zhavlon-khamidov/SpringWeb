@@ -21,12 +21,27 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         security
-                .authorizeHttpRequests()
-                .requestMatchers("/").permitAll()
-                .requestMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().permitAll();
+                //.csrf().disable()
+                .csrf().ignoringRequestMatchers("/api/**").and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and()
+
+                .formLogin(login ->
+                    login.loginPage("/login")
+                            .permitAll()
+                            .usernameParameter("username")
+                            .passwordParameter("password")
+                )
+
+                .authorizeHttpRequests(req ->
+                        req
+                                .requestMatchers("/", "/login","/logout", "/css/**", "/img/**", "/js/**").permitAll()
+                                .requestMatchers("/admin").hasRole("ADMIN")
+                                .anyRequest()
+                                .authenticated()
+                )
+        ;
+
+
         return security.build();
 
     }

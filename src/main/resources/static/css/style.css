@@ -1,6 +1,14 @@
 *{
     color: #444;
 }
+.logo, #icon{
+    width: 100px
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 ul#authors {
     margin: 0;

@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments::head (title='Books')}">
     <meta charset="UTF-8">
     <title>Thymeleaf Tutorial</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-<header>
-    <h2>Logo</h2>
-    <nav>
-        <a href="/create" th:href="@{/create}">Create new Book</a>
-    </nav>
-</header>
+<header th:replace="~{fragments::header}"></header>
 
 <main>
 
@@ -22,12 +18,16 @@
     <ul>
         <li th:each="book : ${books}">
             <span th:text="${book.getTitle() + ' - ' + book.getIsbn()}">Book titles </span>
+            <span sec:authorize-expr="authenticated">
             <a th:href="@{/update/{bookId}(bookId=${book.getId()})}">Edit</a>
             <button th:onclick="'deleteBook('+ ${book.getId()} +')'">Delete</button>
             <a th:href="@{/delete/{bookId}(bookId=${book.getId()})}">Force delete</a>
+            </span>
         </li>
     </ul>
 </main>
+
+<footer th:insert="~{fragments :: footer}"></footer>
 
 <script>
     function deleteBook(id) {

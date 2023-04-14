@@ -2,7 +2,9 @@ package kg.edu.alatoo.spring_web.dao;
 
 import kg.edu.alatoo.spring_web.modules.Role;
 import kg.edu.alatoo.spring_web.modules.User;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +13,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserDAO implements UserDetails {
 
     private final User user;
@@ -54,5 +56,12 @@ public class UserDAO implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDAO{" +
+                user +
+                '}';
     }
 }

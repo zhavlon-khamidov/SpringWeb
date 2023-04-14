@@ -2,7 +2,6 @@ package kg.edu.alatoo.spring_web.controllers;
 
 import kg.edu.alatoo.spring_web.modules.Book;
 import kg.edu.alatoo.spring_web.repos.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +23,16 @@ public class MainController {
         model.addAttribute("books", bookRepository.findAll());
 
         return "main";
+    }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logoutPage() {
+        return "logout";
     }
 
     @GetMapping("/admin")
