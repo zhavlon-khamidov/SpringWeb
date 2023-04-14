@@ -1,9 +1,14 @@
-package kg.edu.alatoo.springWeb;
+package kg.edu.alatoo.spring_web;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestBean {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     public String hello() {
-        System.out.println("inside hello method");
+        log.info("inside hello method");
         return "Hello World";
     }
 }
