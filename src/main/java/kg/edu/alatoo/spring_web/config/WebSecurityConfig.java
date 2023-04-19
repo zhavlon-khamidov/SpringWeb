@@ -19,7 +19,7 @@ public class WebSecurityConfig {
 
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity security) throws Throwable {
         security
                 //.csrf().disable()
                 .csrf().ignoringRequestMatchers("/api/**").and()
@@ -36,8 +36,7 @@ public class WebSecurityConfig {
                         req
                                 .requestMatchers("/", "/login","/logout", "/css/**", "/img/**", "/js/**").permitAll()
                                 .requestMatchers("/admin").hasRole("ADMIN")
-                                .anyRequest()
-                                .authenticated()
+                                .anyRequest().authenticated()
                 )
         ;
 
@@ -64,7 +63,7 @@ public class WebSecurityConfig {
                 User.withDefaultPasswordEncoder()
                         .username("user").password("user").roles("USER").build()
         );
-    }
+}
 
 
     @Bean

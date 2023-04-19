@@ -25,15 +25,7 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
-    }
 
-    @GetMapping("/logout")
-    public String logoutPage() {
-        return "logout";
-    }
 
     @GetMapping("/admin")
     @ResponseBody
