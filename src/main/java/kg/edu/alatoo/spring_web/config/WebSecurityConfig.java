@@ -22,19 +22,19 @@ public class WebSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity security) throws Throwable {
         security
                 //.csrf().disable()
-                .csrf().ignoringRequestMatchers("/api/**").and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and()
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
+                .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/").permitAll())
 
                 .formLogin(login ->
-                    login.loginPage("/login")
-                            .permitAll()
-                            .usernameParameter("username")
-                            .passwordParameter("password")
+                        login.loginPage("/login")
+                                .permitAll()
+                                .usernameParameter("username")
+                                .passwordParameter("password")
                 )
 
                 .authorizeHttpRequests(req ->
                         req
-                                .requestMatchers("/", "/login","/logout", "/css/**", "/img/**", "/js/**").permitAll()
+                                .requestMatchers("/","/error", "/login", "/css/**", "/img/**", "/js/**").permitAll()
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )

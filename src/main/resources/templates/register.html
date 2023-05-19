@@ -6,5 +6,19 @@
 </head>
 <body>
 
+    <form method="post">
+        <input type="hidden" th:name="_csrf.parameterName" th:value="_csrf.token" >
+        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <input type="password" name="password2" id="password2" placeholder="Write again password">
+        <input type="text" name="firstName" id="firstName" placeholder="Firstname">
+        <input type="text" name="lastName" id="lastName" placeholder="Lastname">
+
+
+        <button type="submit">Register</button>
+        <button type="reset">Clear form</button>
+        <a href="/login"><button type="button">Log in</button></a>
+    </form>
+
 </body>
 </html>

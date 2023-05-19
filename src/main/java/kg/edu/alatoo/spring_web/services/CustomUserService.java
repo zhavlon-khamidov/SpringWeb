@@ -30,7 +30,7 @@ public class CustomUserService implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return new UserDAO(
                 userRepository.findByUsername(username.toLowerCase())
-                        .orElseThrow(()->new UserNotFoundException(username)) // loadUserByUsername must never return null
+                        .orElseThrow(()->new UsernameNotFoundException(username)) // loadUserByUsername must never return null
         );
     }
 

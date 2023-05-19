@@ -11,7 +11,7 @@
 	<groupId>kg.edu.alatoo</groupId>
 	<artifactId>springWeb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>Spring Web</name>
 	<description>This is my first web application on spring</description>
 	<properties>
