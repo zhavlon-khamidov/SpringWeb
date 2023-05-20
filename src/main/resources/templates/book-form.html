@@ -11,7 +11,7 @@
 <body>
 <header th:replace="~{fragments::header}"></header>
 <main>
-  <form class="form" method="post" th:action="@{/save}" th:object="${book}">
+  <form class="form" method="post" th:action="@{/save}" th:object="${book}" enctype="multipart/form-data">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     <input type="hidden" th:field="*{id}">
     <div>
@@ -25,6 +25,11 @@
     <div>
       <label for="publishedYear">Published Year</label>
       <input type="number" th:field="*{publishedYear}" id="publishedYear">
+    </div>
+    
+    <div>
+      <label for="coverPhoto">Cover:</label>
+      <input type="file" name="cover" id="coverPhoto">
     </div>
 
     <div>

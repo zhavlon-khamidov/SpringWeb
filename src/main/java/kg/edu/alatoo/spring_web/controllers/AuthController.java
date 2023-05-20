@@ -51,7 +51,7 @@ public class AuthController {
                            @RequestParam String password2,
                            BindingResult bindingResult,
                            Model model,
-                           HttpServletRequest request, RedirectAttributesModelMap attributesModelMap) {
+                           HttpServletRequest request) {
         model.addAttribute(user);
 
         // Check for password match

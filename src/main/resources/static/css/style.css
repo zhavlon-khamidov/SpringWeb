@@ -32,3 +32,7 @@ ul#authors li{
     padding: 0.3em;
     margin: 0.5em;
 }
+
+.cover-image{
+    max-height: 200px;
+}

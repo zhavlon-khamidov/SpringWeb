@@ -45,7 +45,7 @@ public class CustomUserService implements UserService {
     public User createUserWithRoles(User user, String... roles) throws UsernameAlreadyExistsException {
         if (userExists(user.getUsername()))
             throw new UsernameAlreadyExistsException(user.getUsername());
-        log.debug("Creating user: {} with roles {}",user.toString(), Arrays.toString(roles));
+        log.debug("Creating user: {} with roles {}",user, Arrays.toString(roles));
         user.setId(null);
         user.setUsername(user.getUsername().toLowerCase());
         user.setPassword(encoder.encode(user.getPassword()));
