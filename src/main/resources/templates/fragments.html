@@ -14,8 +14,9 @@
     </a>
     <nav>
         <a href="/create" th:href="@{/create}">Create new Book</a>
-        <a href="/logout" sec:authorize-expr="authenticated">Log out</a>
-        <a href="/login" sec:authorize-expr="anonymous">Log in</a>
+        <a href="/logout" th:href="@{/logout}" sec:authorize-expr="authenticated">Log out</a>
+        <a href="/login" th:href="@{/login}" sec:authorize-expr="anonymous">Sign in</a>
+        <a href="/register" th:href="@{/register}" sec:authorize-expr="anonymous">Sign up</a>
         <a href="/admin" sec:authorize-expr="hasRole('ADMIN')">Admin page</a>
     </nav>
 </header>

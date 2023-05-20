@@ -22,19 +22,20 @@ public class WebSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity security) throws Throwable {
         security
                 //.csrf().disable()
-                .csrf().ignoringRequestMatchers("/api/**").and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/").permitAll().and()
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
+                .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/").permitAll())
 
                 .formLogin(login ->
-                    login.loginPage("/login")
-                            .permitAll()
-                            .usernameParameter("username")
-                            .passwordParameter("password")
+                        login.loginPage("/login")
+                                .permitAll()
+                                .usernameParameter("username")
+                                .passwordParameter("password")
                 )
 
                 .authorizeHttpRequests(req ->
                         req
-                                .requestMatchers("/", "/login","/logout", "/css/**", "/img/**", "/js/**").permitAll()
+                                .requestMatchers("/", "/error", "/css/**", "/img/**", "/js/**").permitAll()
+                                .requestMatchers("/login","/register").anonymous()
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
@@ -46,15 +47,16 @@ public class WebSecurityConfig {
     }
 
 
-    /** By default, spring looks for UserDetailsService type bean to find actual user.
+    /**
+     * By default, spring looks for UserDetailsService type bean to find actual user.
      * Here I've created the bean with type {@link org.springframework.security.provisioning.InMemoryUserDetailsManager
      * InMemoryUserDetailsManager} that has single user with username 'user'.
      * <p></p>
      * Update: I'm going to create my {@link kg.edu.alatoo.spring_web.services.CustomUserService CustomUserService} that gets user from database, with using Spring Data JPA
-     *       So, I've disabled this {@link org.springframework.context.annotation.Bean @Bean} creation
+     * So, I've disabled this {@link org.springframework.context.annotation.Bean @Bean} creation
      *
      * @see org.springframework.security.core.userdetails.UserDetailsService UserDetailsService
-     * */
+     */
 
 //    @Bean
     @SuppressWarnings("deprecation")
@@ -63,7 +65,7 @@ public class WebSecurityConfig {
                 User.withDefaultPasswordEncoder()
                         .username("user").password("user").roles("USER").build()
         );
-}
+    }
 
 
     @Bean

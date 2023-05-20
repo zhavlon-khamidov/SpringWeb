@@ -2,6 +2,7 @@ package kg.edu.alatoo.spring_web.services;
 
 import kg.edu.alatoo.spring_web.dao.UserDAO;
 import kg.edu.alatoo.spring_web.exceptions.UserNotFoundException;
+import kg.edu.alatoo.spring_web.exceptions.UsernameAlreadyExistsException;
 import kg.edu.alatoo.spring_web.modules.Role;
 import kg.edu.alatoo.spring_web.modules.User;
 import kg.edu.alatoo.spring_web.repos.RoleRepository;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,21 +32,20 @@ public class CustomUserService implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return new UserDAO(
                 userRepository.findByUsername(username.toLowerCase())
-                        .orElseThrow(()->new UserNotFoundException(username)) // loadUserByUsername must never return null
+                        .orElseThrow(()->new UsernameNotFoundException(username)) // loadUserByUsername must never return null
         );
     }
 
     @Override
-    public User createUser(User user) {
-        user.setId(null);
-        user.setUsername(user.getUsername().toLowerCase());
-        user.setPassword(encoder.encode(user.getPassword()));
-        return userRepository.save(user);
+    public User createUser(User user) throws UsernameAlreadyExistsException {
+        return createUserWithRoles(user, "USER");
     }
 
     @Override
-    public User createUserWithRoles(User user, String... roles) {
-        log.debug(user.toString());
+    public User createUserWithRoles(User user, String... roles) throws UsernameAlreadyExistsException {
+        if (userExists(user.getUsername()))
+            throw new UsernameAlreadyExistsException(user.getUsername());
+        log.debug("Creating user: {} with roles {}",user.toString(), Arrays.toString(roles));
         user.setId(null);
         user.setUsername(user.getUsername().toLowerCase());
         user.setPassword(encoder.encode(user.getPassword()));

@@ -11,7 +11,7 @@
     <div id="formContent">
         <!-- Tabs Titles -->
         <h2 class="active"> Sign In </h2>
-        <h2 class="inactive underlineHover">Sign Up </h2>
+        <a th:href="@{/register}"><h2 class="inactive underlineHover">Sign Up</h2></a>
 
         <!-- Icon -->
         <div class="fadeIn first">
@@ -23,7 +23,7 @@
         <!-- Login Form -->
         <form method="post">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-            <label><input type="text" id="login" class="fadeIn second" name="username" placeholder="login"></label>
+            <label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username"></label>
             <label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password"></label>
             <input type="submit" class="fadeIn fourth" value="Log In">
         </form>

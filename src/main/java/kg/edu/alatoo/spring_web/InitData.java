@@ -1,5 +1,6 @@
 package kg.edu.alatoo.spring_web;
 
+import kg.edu.alatoo.spring_web.exceptions.UsernameAlreadyExistsException;
 import kg.edu.alatoo.spring_web.modules.*;
 import kg.edu.alatoo.spring_web.repos.AuthorRepository;
 import kg.edu.alatoo.spring_web.repos.BookRepository;
@@ -35,12 +36,12 @@ public class InitData implements InitializingBean {
     }
 
     @Override
-    public void afterPropertiesSet() {
+    public void afterPropertiesSet() throws UsernameAlreadyExistsException {
         populateBooks();
         populateUsers();
     }
 
-    private void populateUsers() {
+    private void populateUsers() throws UsernameAlreadyExistsException {
         User user = User.builder()
                 .username("user")
                 .password("user")

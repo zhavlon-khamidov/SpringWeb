@@ -24,6 +24,7 @@ public class User {
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @Builder.Default
     private Set<Role> roles = new HashSet<>();
 
     public User() {
