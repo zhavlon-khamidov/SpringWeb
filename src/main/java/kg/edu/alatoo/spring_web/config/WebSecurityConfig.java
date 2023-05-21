@@ -1,7 +1,6 @@
 package kg.edu.alatoo.spring_web.config;
 
 
-import kg.edu.alatoo.spring_web.TestBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,7 +33,7 @@ public class WebSecurityConfig {
 
                 .authorizeHttpRequests(req ->
                         req
-                                .requestMatchers("/", "/error", "/css/**", "/img/**", "/js/**").permitAll()
+                                .requestMatchers("/", "/error", "/css/**", "/img/**", "/js/**","/cover/**").permitAll()
                                 .requestMatchers("/login","/register").anonymous()
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated()
@@ -71,10 +70,5 @@ public class WebSecurityConfig {
     @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-
-    @Bean
-    TestBean test() {
-        return new TestBean();
     }
 }

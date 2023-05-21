@@ -9,13 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SpringWebApplicationTests {
 
-	@Autowired
-	TestBean test;
 
 	@Test
 	void contextLoads() {
-		assertNotNull(test);
-		System.out.println(test.hello());
 	}
 
 }

@@ -23,6 +23,8 @@
             <button th:onclick="'deleteBook('+ ${book.getId()} +')'">Delete</button>
             <a th:href="@{/delete/{bookId}(bookId=${book.getId()})}">Force delete</a>
             </span>
+            <br>
+            <img class="cover" th:src="@{/cover/{image}(image=${book.coverImage})}" src="../static/img/no-cover.png" alt="Cover Image">
         </li>
     </ul>
 </main>
